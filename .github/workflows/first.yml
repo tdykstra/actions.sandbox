@@ -32,7 +32,7 @@ jobs:
 
   job3:
     name: ThirdJob
-    runs-on: macos-latest
+    runs-on: windows-latest
     needs: [job1, job2]
     steps:
     - name: Step one
