@@ -1,10 +1,19 @@
 name: first
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
 jobs:
   job1:
     name: FirstJob
     runs-on: ubuntu-latest
     steps:
+    - name: get-date
+      run: date
     - name: Step one
       uses: actions/checkout@v2
     - name: Step two
@@ -13,6 +22,18 @@ jobs:
   job2:
     name: SecondJob
     runs-on: windows-latest
+    steps:
+    - name: get-date
+      run: date
+    - name: Step one
+      uses: actions/checkout@v2
+    - name: Step two
+      run: "Get-ChildItem Env: | Sort-Object Name"
+
+  job3:
+    name: ThirdJob
+    runs-on: macos-latest
+    needs: [job1, job2]
     steps:
     - name: Step one
       uses: actions/checkout@v2
